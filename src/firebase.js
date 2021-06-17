@@ -4,7 +4,7 @@ import "firebase/analytics"
 import "firebase/auth"
 import "firebase/firestore"
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDzWe7BTdXHakrWvxD_cg5zD-APrfTT9X0",
   authDomain: "test-dafb3.firebaseapp.com",
   projectId: "test-dafb3",
@@ -16,9 +16,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 firebase.analytics()
 
-const db = firebase.firestore()
-const auth = firebase.auth()
+export const db = firebase.firestore()
+export const auth = firebase.auth()
 
-const clUsers = db.collection('users')
+export const clUsers = db.collection('users')
 
 export default {db, auth, clUsers, firebaseConfig}
