@@ -1,5 +1,4 @@
-# Vue Templates
-This doesn't include any cli plugins
+# Firabes test
 
 ## Project setup
 ```

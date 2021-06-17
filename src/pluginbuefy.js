@@ -1,10 +1,9 @@
 import "@/assets/scss/buefy.scss"
 import Vue from 'vue'
-import { ConfigProgrammatic, Button, Icon } from 'buefy'
+import Buefy from 'buefy'
 import AppIcon from "@/components/AppIcon.js"
 
-Vue.use(Button)
-Vue.use(Icon)
+Vue.use(Buefy)
 ConfigProgrammatic.setOptions({
   defaultIconPack: 'svg',
   defaultIconComponent: AppIcon,

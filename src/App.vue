@@ -1,12 +1,32 @@
 <template>
-  <div id="app" style="margin-left: 1em; margin-right: 1em">
-    <b-button icon-left="mdiAccount">Hello</b-button>
-    <b-icon icon="mdiAccount" size="is-large"></b-icon>
-    <app-icon icon="account" size="42"/>
-    <span class="icon">
-      <svg viewBox="0 0 24 24">
-        <path :d="$icons.mdiAccount"></path>
-      </svg>
-    </span>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
