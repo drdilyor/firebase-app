@@ -30,4 +30,8 @@ html, body, #app {
 html {
   overflow: auto !important;
 }
+.my-container {
+  max-width: 40em;
+  margin: 0 auto;
+}
 </style>

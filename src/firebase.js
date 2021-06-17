@@ -20,5 +20,6 @@ export const db = firebase.firestore()
 export const auth = firebase.auth()
 
 export const clUsers = db.collection('users')
+export const clPosts = db.collection('posts')
 
-export default {db, auth, clUsers, firebaseConfig}
+export default {db, auth, clUsers, clPosts, firebaseConfig}

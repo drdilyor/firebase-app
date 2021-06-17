@@ -34,6 +34,17 @@ export default new Vuex.Store({
       await firebase.auth.signOut()
       commit('setUserProfile', null)
     },
+    async createPost({state, commit}, post) {
+      await firebase.clPosts.add({
+        createdAt: new Date(),
+        content: post.content,
+        authorId: firebase.auth.currentUser.uid,
+        authorFirstName: state.userProfile.firstName,
+        authorLastName: state.userProfile.lastName,
+        comments: 0,
+        likes: 0,
+      })
+    }
   },
   modules: {
   }
