@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './pluginbuefy.js'
+import "@/assets/scss/styles.scss"
 import AppIcon from '@/components/AppIcon'
 import store from './store'
 import router from './router'

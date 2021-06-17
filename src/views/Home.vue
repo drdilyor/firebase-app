@@ -1,3 +1,5 @@
 <template>
-  <p>Home</p>
+  <section class="section">
+    <p>Home</p>
+  </section>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <router-view />
+    <router-view class="router-view" />
   </div>
 </template>
 
@@ -12,3 +12,19 @@ export default {
   components: {AppHeader},
 }
 </script>
+
+<style>
+html, body, #app {
+  height: 100%;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+}
+#app > .router-view {
+  flex: 1;
+}
+html {
+  overflow: auto !important;
+}
+</style>

@@ -1,4 +1,3 @@
-import "@/assets/scss/buefy.scss"
 import Vue from 'vue'
 import Buefy from 'buefy'
 import AppIcon from "@/components/AppIcon.js"
