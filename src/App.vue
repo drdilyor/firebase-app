@@ -1,28 +1,12 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" style="margin-left: 1em; margin-right: 1em">
+    <b-button icon-left="mdiAccount">Hello</b-button>
+    <b-icon icon="mdiAccount" size="is-large"></b-icon>
+    <app-icon icon="account" size="42"/>
+    <span class="icon">
+      <svg viewBox="0 0 24 24">
+        <path :d="$icons.mdiAccount"></path>
+      </svg>
+    </span>
   </div>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

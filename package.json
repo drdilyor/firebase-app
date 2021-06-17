@@ -1,5 +1,5 @@
 {
-  "name": "buefy-iconify",
+  "name": "template-vue",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,10 +7,15 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@mdi/js": "^5.9.55",
+    "buefy": "^0.9.7",
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-service": "~4.5.0",
-    "vue-template-compiler": "^2.6.11"
+    "sass": "^1.35.1",
+    "sass-loader": "^10.2.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.46.0"
   }
 }
