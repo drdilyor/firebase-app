@@ -18,10 +18,18 @@ export default new Vuex.Store({
       const {user} = await firebase.auth.signInWithEmailAndPassword(form.email, form.password)
       dispatch('fetchUserProfile', user)
     },
-    async dispatch({dispatch}, form) {
+    async fetchUserProfile({dispatch, commit}, user) {
       const userProfile = await firebase.clUsers.doc(user.uid).get()
       commit('setUserProfile', userProfile.data())
     },
+    async signup({dispatch}, form) {
+      const {user} = await firebase.auth.createUserWithEmailAndPassword(form.email, form.password)
+      await firebase.clUsers.doc(user.uid).set({
+        firstName: form.firstName,
+        lastName: form.lastName,
+      })
+      dispatch('fetchUserProfile', user)
+    }
   },
   modules: {
   }
