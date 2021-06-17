@@ -3,8 +3,7 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import AppIcon from "@/components/AppIcon.js"
 
-Vue.use(Buefy)
-ConfigProgrammatic.setOptions({
+Vue.use(Buefy, {
   defaultIconPack: 'svg',
   defaultIconComponent: AppIcon,
   customIconPacks: {
