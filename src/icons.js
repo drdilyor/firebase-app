@@ -3,15 +3,19 @@ import Vue from 'vue'
 import {
   mdiAccount,
   mdiAlertCircleOutline,
+  mdiEmail,
   mdiEye,
   mdiEyeOff,
+  mdiLock,
 } from '@mdi/js'
 
 const icons = {
   mdiAccount,
   mdiAlertCircleOutline,
+  mdiEmail,
   mdiEye,
   mdiEyeOff,
+  mdiLock,
 }
 Vue.prototype.$icons= icons
 
