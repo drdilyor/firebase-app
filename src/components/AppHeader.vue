@@ -1,14 +1,14 @@
 <template>
-  <b-navbar type="is-primary">
+  <b-navbar type="is-primary" shadow>
     <template #brand>
       <b-navbar-item tag="router-link" to="/">
-        Firebase Test
+        <b>Firebase Test</b>
       </b-navbar-item>
     </template>
-    <!--
-    <template #start>
-      <b-navbar-item></b-navbar-item>
+    <template #end>
+      <b-navbar-item tag="router-link" to="/login">
+        Login
+      </b-navbar-item>
     </template>
-    -->
   </b-navbar>
 </template>
