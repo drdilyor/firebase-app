@@ -5,8 +5,10 @@ import "@/assets/scss/styles.scss"
 import AppIcon from '@/components/AppIcon'
 import store from './store'
 import router from './router'
+import firebase from './firebase'
 
 Vue.config.productionTip = false
+Vue.prototype.$firebase = firebase
 Vue.component('app-icon', AppIcon)
 
 new Vue({
