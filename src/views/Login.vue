@@ -1,7 +1,7 @@
 <template>
   <section class="section center">
     <transition name="flip">
-      <div v-if="showLogin" key="login" class="box">
+      <div v-if="page == 'login'" key="login" class="box">
         <h1 class="title">Firebase Test</h1>
         <p class="subtitle">Login to continue</p>
         <form @submit.prevent="login">
@@ -26,10 +26,11 @@
             Login
           </b-button></b-field>
           <p class="has-text-danger">{{ loginForm.error }}</p>
-          <p>Don't have an account? <a href="#" @click.prevent="showLogin = false">Sign up</a></p>
+          <p>Don't have an account? <a href="#" @click.prevent="page = 'signup'">Sign up</a></p>
+          <p>Forgot password? <a href="#" @click.prevent="page = 'reset'">Reset</a></p>
         </form>
       </div>
-      <div v-else key="signup" class="box">
+      <div v-else-if="page == 'signup'" key="signup" class="box">
         <h1 class="title">Firebase Test</h1>
         <p class="subtitle">Welcome to my app! Here you can create an account</p>
         <form @submit.prevent="signup">
@@ -65,7 +66,28 @@
             Sign up
           </b-button></b-field>
           <p class="has-text-danger">{{ signupForm.error }}</p>
-          <p>Already have an account? <a href="#" @click.prevent="showLogin = true">Login</a></p>
+          <p>Already have an account? <a href="#" @click.prevent="page = 'login'">Login</a></p>
+        </form>
+      </div>
+      <div v-else-if="page = 'reset'" key="reset" class="box">
+        <h1 class="title">Firebase Test</h1>
+        <p class="subtitle">Reset password</p>
+        <b-message v-model="resetForm.showSuccess" type="is-success">
+          Success. Check your email for a reset link.
+        </b-message>
+        <form @submit.prevent="reset">
+          <b-field label="Email">
+            <b-input
+              v-model="loginForm.email"
+              type="email"
+              icon="email"
+              required />
+          </b-field>
+          <b-field><b-button :loading="resetForm.loading" type="is-danger" native-type="submit" expanded>
+            Reset
+          </b-button></b-field>
+          <p class="has-text-danger">{{ resetForm.error }}</p>
+          <p>Go back to <a href="#" @click.prevent="page = 'login'">Login</a></p>
         </form>
       </div>
     </transition>
@@ -73,9 +95,11 @@
 </template>
 
 <script>
+import firebase from '@/firebase'
+
 export default {
   data: () => ({
-    showLogin: true,
+    page: 'login',
     loginForm: {
       email: '',
       password: '',
@@ -89,6 +113,11 @@ export default {
       password: '',
       loading: false,
       error: null,
+    },
+    resetForm: {
+      loading: false,
+      error: null,
+      showSuccess: false,
     }
   }),
   methods: {
@@ -126,6 +155,22 @@ export default {
         })
         .then(() => this.$router.push('/'))
         .catch(err => alert('something really bad happened :('))
+      }
+      catch (err) {
+        form.error = err.message
+      }
+      finally {
+        form.loading = false
+      }
+    },
+    async reset() {
+      const form = this.resetForm
+      form.loading = true
+      form.error = null
+      form.showSuccess = false
+      try {
+        await firebase.auth.sendPasswordResetEmail(this.loginForm.email)
+        form.showSuccess = true
       }
       catch (err) {
         form.error = err.message
