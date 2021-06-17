@@ -10,9 +10,20 @@ import firebase from './firebase'
 Vue.config.productionTip = false
 Vue.prototype.$firebase = firebase
 Vue.component('app-icon', AppIcon)
+window.firebase = firebase
 
-new Vue({
-  store,
-  router,
-  render: function (h) { return h(App) }
-}).$mount('#app')
+let app
+
+firebase.auth.onAuthStateChanged(user => {
+  app || (app = new Vue({
+    store,
+    router,
+    render: function (h) { return h(App) }
+  }).$mount('#app'))
+  if (user) {
+    store.dispatch('fetchUserProfile', user)
+    if (router.currentRoute.path == '/login') {
+      router.push('/')
+    }
+  }
+})

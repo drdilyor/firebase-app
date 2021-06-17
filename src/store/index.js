@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userProfile: {},
+    userProfile: null,
   },
   mutations: {
     setUserProfile(state, val) {
@@ -29,7 +29,11 @@ export default new Vuex.Store({
         lastName: form.lastName,
       })
       dispatch('fetchUserProfile', user)
-    }
+    },
+    async logout({commit}) {
+      await firebase.auth.signOut()
+      commit('setUserProfile', null)
+    },
   },
   modules: {
   }

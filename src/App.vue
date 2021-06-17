@@ -21,6 +21,9 @@ html, body, #app {
   display: flex;
   flex-direction: column;
 }
+#app > * {
+  flex-shrink: 0;
+}
 #app > .router-view {
   flex: 1;
 }

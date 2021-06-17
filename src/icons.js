@@ -6,7 +6,9 @@ import {
   mdiEmail,
   mdiEye,
   mdiEyeOff,
+  mdiCog,
   mdiLock,
+  mdiLogout,
 } from '@mdi/js'
 
 const icons = {
@@ -15,7 +17,10 @@ const icons = {
   mdiEmail,
   mdiEye,
   mdiEyeOff,
+  mdiCog,
+  mdiGear: mdiCog, // wtf? gear is more meaningful
   mdiLock,
+  mdiLogout,
 }
 Vue.prototype.$icons= icons
 
