@@ -4,14 +4,18 @@ import firebase from '@/firebase'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     userProfile: null,
+    posts: [],
   },
   mutations: {
     setUserProfile(state, val) {
       state.userProfile = val
-    }
+    },
+    setPosts(state, val) {
+      state.posts = val
+    },
   },
   actions: {
     async login({dispatch}, form) {
@@ -37,6 +41,7 @@ export default new Vuex.Store({
     async createPost({state, commit}, post) {
       await firebase.clPosts.add({
         createdAt: new Date(),
+        title: post.title,
         content: post.content,
         authorId: firebase.auth.currentUser.uid,
         authorFirstName: state.userProfile.firstName,
@@ -49,3 +54,15 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+firebase.clPosts.orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+  let posts = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = doc.id
+    posts.push(post)
+  })
+  store.commit('setPosts', posts)
+})
+
+export default store
