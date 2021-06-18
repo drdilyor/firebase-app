@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from '@/firebase'
+import makeAvatar from '@/makeavatar.js'
 
 Vue.use(Vuex)
 
@@ -41,7 +42,6 @@ const store = new Vuex.Store({
     async createPost({state, commit}, post) {
       await firebase.clPosts.add({
         createdAt: new Date(),
-        title: post.title,
         content: post.content,
         authorId: firebase.auth.currentUser.uid,
         authorFirstName: state.userProfile.firstName,
@@ -49,6 +49,11 @@ const store = new Vuex.Store({
         comments: 0,
         likes: 0,
       })
+    }
+  },
+  getters: {
+    myAvatar(state) {
+      return state.userProfile && makeAvatar(state.userProfile)
     }
   },
   modules: {

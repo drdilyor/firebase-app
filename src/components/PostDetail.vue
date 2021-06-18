@@ -1,28 +1,44 @@
 <template>
-  <div class="post block p-4">
-    <h3 class="has-text-primary title is-4">{{ post.title }}</h3>
-    <p class="subtitle is-6">
-      {{ post.authorFirstName }} {{ post.authorLastName }},
-      {{ post.createdAt.toDate().toLocaleString() }}
-    </p>
-    <p>{{ post.content }}</p>
-  </div>
+  <article class="post block">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img :src="authorAvatar" alt="Avatar">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="has-text-weight-bold has-text-primary is-6 mb-2">
+          {{ post.authorFirstName }} {{ post.authorLastName }},
+          {{ post.createdAt.toDate().toLocaleString() }}
+        </p>
+        <p>{{ post.content }}</p>
+      </div>
+    </div>
+  </article>
 </template>
 
 <script>
+import makeAvatar from '@/makeavatar.js'
+
 export default {
   props: {
     post: {
       type: Object,
       required: true,
     }
+  },
+  data: () => ({
+    authorAvatar: '',
+  }),
+  mounted() {
+    this.$firebase.clUsers.doc(this.post.authorId).get()
+    .then(user => {
+      this.authorAvatar = makeAvatar(user.data())
+
+    })
   }
 }
 </script>
 
 <style>
-.post {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
 </style>

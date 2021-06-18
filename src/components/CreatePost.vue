@@ -1,29 +1,33 @@
 <template>
   <div class="box">
-    <h2 class="title is-4">Create a post</h2>
-    <form @submit.prevent="createPost">
-      <b-field>
-        <b-input v-model="title" placeholder="Title" />
-      </b-field>
-      <b-field>
-        <b-input v-model="content" type="textarea" />
-      </b-field>
-      <b-field><b-button
-        :loading="loading"
-        :disabled="!(title && content)"
-        type="is-primary"
-        native-type="submit">
-        Post
-      </b-button></b-field>
-      <p>{{ error }}</p>
-    </form>
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img :src="$store.getters.myAvatar" alt="">
+        </figure>
+      </div>
+      <div class="media-content">
+        <form @submit.prevent="createPost">
+          <b-field>
+            <b-input v-model="content" type="textarea" placeholder="Create a post" />
+          </b-field>
+          <b-field><b-button
+            v-show="content"
+            :loading="loading"
+            type="is-primary"
+            native-type="submit">
+            Post
+          </b-button></b-field>
+          <p>{{ error }}</p>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    title: '',
     content: '',
     loading: false,
     error: null,
@@ -33,13 +37,12 @@ export default {
       this.error = null
       this.loading = true
       try {
-        await this.$store.dispatch('createPost', {title: this.title, content: this.content})
+        await this.$store.dispatch('createPost', {content: this.content})
       }
       catch (err) {
         this.error = err.message
       }
       finally {
-        this.title = ''
         this.content = ''
         this.loading = false
       }
