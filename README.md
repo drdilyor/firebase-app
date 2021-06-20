@@ -1,18 +1,24 @@
 # Firabes test
 
+A simple Firebase app with Auth & Firestore + Vue.js
+
+Deployed to https://fired-blaze-test.netlify.app
+
+![Screenshot](screenshot.jpg)
+
 ## Project setup
 ```
-npm install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
 ### Customize configuration
